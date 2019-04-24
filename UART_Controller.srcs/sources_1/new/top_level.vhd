@@ -32,19 +32,18 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity top_level is
-    Port ( clk : in STD_LOGIC;
-           RsRx : in STD_LOGIC; -- UART_TXD_IN
-           RsRts : in STD_LOGIC; -- UART_RTS
-           RsTx : out STD_LOGIC; -- UART_RXD_OUT
-           RsCts : out STD_LOGIC); -- UART_CTS
+    Port ( clk : in std_logic;
+           en : in std_logic; -- turns UART on/off
+           RsRx : in std_logic; -- Serial In
+           RsTx : out std_logic ); -- Serial Out
 end top_level;
 
 architecture Behavioral of top_level is
 
 begin
 
-RsTx <= RsRx;
-RsCTS <= RSRts;
+RsTx <= RsRx when en = '1' else
+        '0';
 
 
 end Behavioral;
