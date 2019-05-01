@@ -38,7 +38,7 @@ port(
     clk       :   in  STD_LOGIC;
     sh_out    :   out STD_LOGIC_VECTOR( 7 downto 0 );
     input     :   in  STD_LOGIC;
-    baud_rate :  in  STD_LOGIC
+    baud_rate :   in  STD_LOGIC
 );
 end shift_register;
 
@@ -60,8 +60,8 @@ begin
 --feed(0) <= input;
 
 D0: for i in 0 to 6 generate
-    feed(i) <= input when baud_rate = '0' and i = 0 else
-               feed( i + 1 ) when baud_rate = '0' else
+    feed(i) <= input when baud_rate = '0' else
+--feed( i + 1 ) when baud_rate = '0' else
                feed(i);
     Di: flip_flop port map(
         d => feed(i),
