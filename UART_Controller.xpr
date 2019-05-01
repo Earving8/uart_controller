@@ -75,8 +75,10 @@
     </FileSet>
     <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
       <Filter Type="Constrs"/>
-      <File Path="$PPRDIR/../Lab8/Lab8.srcs/constrs_1/imports/Nexys4_Board_Material/Nexys4_Master.xdc">
+      <File Path="$PSRCDIR/constrs_1/imports/Nexys4_Board_Material/Nexys4_Master.xdc">
         <FileInfo>
+          <Attr Name="ImportPath" Val="$PPRDIR/../Lab8/Lab8.srcs/constrs_1/imports/Nexys4_Board_Material/Nexys4_Master.xdc"/>
+          <Attr Name="ImportTime" Val="1556142696"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
         </FileInfo>
@@ -86,6 +88,7 @@
       </Config>
     </FileSet>
     <FileSet Name="sim_1" Type="SimulationSrcs" RelSrcDir="$PSRCDIR/sim_1">
+      <Filter Type="Srcs"/>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
         <Option Name="TopModule" Val="top_level"/>
