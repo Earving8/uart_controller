@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:H:/EECS_443/Lab8/Lab8.srcs/constrs_1/imports/Nexys4_Board_Material/Nexys4_Master.xdc rfile:../../../../Lab8/Lab8.srcs/constrs_1/imports/Nexys4_Board_Material/Nexys4_Master.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:H:/EECS_443/Final_Project/UART_Controller.srcs/constrs_1/imports/Nexys4_Board_Material/Nexys4_Master.xdc rfile:../../../UART_Controller.srcs/constrs_1/imports/Nexys4_Board_Material/Nexys4_Master.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:8 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN E3 [get_ports clk]
 set_property src_info {type:XDC file:1 line:14 export:INPUT save:INPUT read:READ} [current_design]

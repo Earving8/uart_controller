@@ -40,7 +40,28 @@ end top_level;
 
 architecture Behavioral of top_level is
 
+component shift_register is
+generic( f_in   : natural := 100E6;
+         f_out  : natural := 9600
+       );
+port   (
+       clk     :   in STD_LOGIC;
+       sh_out  :   out STD_LOGIC_VECTOR( 7 downto 0 );
+       input   :   in STD_LOGIC
+       );
+end component;
+
+signal toTypeWriter : STD_LOGIC_VECTOR( 7 downto 0);
+
 begin
+
+S0: shift_register port map(
+    clk => clk,
+    sh_out => toTypeWriter,
+    input => RsRx
+    );
+
+
 
 RsTx <= RsRx when en = '1' else
         '0';
