@@ -35,17 +35,13 @@ use IEEE.math_real.all;
 --use UNISIM.VComponents.all;
 
 entity uart_tx is
-    generic (
-                clkRate: integer := 100000000;
-                baudRate: integer := 9600
-            );
             
     port(
             tx: out std_logic;               
             tx_busy: out std_logic;                      
             tx_data: in std_logic_vector(7 downto 0);
-            tx_en: in std_logic;                      
-            clk: in std_logic                   
+            tx_en: in std_logic;                     
+            baudClk: in std_logic                 
         );
 end uart_tx;
 
@@ -53,10 +49,7 @@ architecture Behavior of uart_tx is
 
     signal start: std_logic;                      
     signal isBusy: std_logic;                       
-    signal output: std_logic_vector(10 downto 0);   
-    constant rate: integer := integer(ceil(real(clkRate)/(real(2)*real(baudRate))));
-    signal count: integer range 0 to rate;   
-    signal baudClk: std_logic;                 
+    signal output: std_logic_vector(10 downto 0);                     
     signal index: integer range 0 to 10; 
     
 begin
@@ -92,18 +85,6 @@ begin
             output(1) <= '0'; 
             output(9 downto 2) <= tx_data; 
             output(10) <= '1';
-        end if;
-    end process;
-
-    process(clk)
-    begin
-        if (rising_edge(clk)) then     
-            if (count < rate) then  
-                count <= count + 1;  
-            else
-                count <= 0;            
-                baudClk <= not baudClk;     
-            end if;
         end if;
     end process;
     

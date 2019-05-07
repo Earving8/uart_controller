@@ -63,8 +63,8 @@ set_property PACKAGE_PIN U9 [get_ports {en}]
 
 ## LEDs
 #Bank = 34, Pin name = IO_L24N_T3_34,						Sch name = LED0
-set_property PACKAGE_PIN T8 [get_ports {clk_pulse}]					
-	set_property IOSTANDARD LVCMOS33 [get_ports {clk_pulse}]
+set_property PACKAGE_PIN T8 [get_ports {tx_busy}]					
+	set_property IOSTANDARD LVCMOS33 [get_ports {tx_busy}]
 ##Bank = 34, Pin name = IO_L21N_T3_DQS_34,					Sch name = LED1
 #set_property PACKAGE_PIN V9 [get_ports {led[1]}]					
 	#set_property IOSTANDARD LVCMOS33 [get_ports {led[1]}]

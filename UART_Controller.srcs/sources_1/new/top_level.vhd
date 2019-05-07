@@ -34,7 +34,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity top_level is
     Port ( clk : in std_logic;
            en : in std_logic; -- turns UART on/off
-           clk_pulse: out std_logic;
+           tx_busy: out std_logic;
            RsRx : in std_logic; -- Serial In
            RsTx : out std_logic ); -- Serial Out
 end top_level;
@@ -49,20 +49,49 @@ architecture Behavioral of top_level is
         Port ( clk : in STD_LOGIC;
                Y : out STD_LOGIC);
     end component;
+    
+    component shift_register is
+    port(
+        clk       :   in  STD_LOGIC;
+        sh_out    :   out STD_LOGIC_VECTOR( 7 downto 0 );
+        input     :   in  STD_LOGIC
+    );
+    end component;
+    
+component uart_tx is
+                
+        port(
+                tx: out std_logic;               
+                tx_busy: out std_logic;                      
+                tx_data: in std_logic_vector(7 downto 0);
+                tx_en: in std_logic;                     
+                baudClk: in std_logic                 
+            );
+    end component;
 
-    signal baud_rate: std_logic;
+    signal baud_clk: std_logic;
+    signal data: std_logic_vector(7 downto 0);
 
 begin
 
     pulse_gen: clock_divider port map(
         clk => clk,
-        Y => baud_rate
+        Y => baud_clk
     );
-
-RsTx <= RsRx when en = '1' else
-        '0';
-        
-clk_pulse <= baud_rate;
+    
+    transmitter: uart_tx port map(
+        tx => RsTx,
+        tx_busy => tx_busy,
+        tx_data => data,
+        tx_en => en,
+        baudClk => baud_clk
+    );
+    
+    receiver: shift_register port map(
+        clk => baud_clk,
+        sh_out => data,
+        input => RsRx
+    );
 
 
 end Behavioral;
