@@ -34,7 +34,9 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity top_level is
     Port ( clk : in std_logic;
            en : in std_logic; -- turns UART on/off
+           reset: in std_logic; -- resets colors
            tx_busy: out std_logic;
+           red_led, blue_led, green_led: out std_logic;
            RsRx : in std_logic; -- Serial In
            RsTx : out std_logic ); -- Serial Out
 end top_level;
@@ -50,12 +52,13 @@ architecture Behavioral of top_level is
                Y : out STD_LOGIC);
     end component;
     
-    component shift_register is
-    port(
-        clk       :   in  STD_LOGIC;
-        sh_out    :   out STD_LOGIC_VECTOR( 7 downto 0 );
-        input     :   in  STD_LOGIC
-    );
+    component uart_rx is
+        port (
+            baudClk     : in    STD_LOGIC;
+            rx          : in    STD_LOGIC;
+            rx_out      : out   STD_LOGIC_VECTOR(7 downto 0);
+            busy        : out   std_logic
+            );
     end component;
     
 component uart_tx is
@@ -68,8 +71,17 @@ component uart_tx is
                 baudClk: in std_logic                 
             );
     end component;
+    
+    component color_detector is
+        Port ( data : in STD_LOGIC_VECTOR (7 downto 0);
+               reset: in STD_LOGIC;
+               clk: in STD_LOGIC;
+               red_led : out STD_LOGIC;
+               blue_led : out STD_LOGIC;
+               green_led : out STD_LOGIC);
+    end component;
 
-    signal baud_clk: std_logic;
+    signal baud_clk, rx_busy: std_logic;
     signal data: std_logic_vector(7 downto 0);
 
 begin
@@ -83,15 +95,25 @@ begin
         tx => RsTx,
         tx_busy => tx_busy,
         tx_data => data,
-        tx_en => en,
+        tx_en => rx_busy,
         baudClk => baud_clk
     );
     
-    receiver: shift_register port map(
-        clk => baud_clk,
-        sh_out => data,
-        input => RsRx
+    receiver: uart_rx port map(
+        baudClk => baud_clk,
+        rx_out => data,
+        rx => RsRx,
+        busy => rx_busy
     );
-
+    
+    detector: color_detector port map ( 
+            data => data,
+           reset => reset,
+           clk => rx_busy,
+           red_led => red_led,
+           blue_led => blue_led,
+           green_led=> green_led
+     );
+     
 
 end Behavioral;

@@ -1,0 +1,7 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "H:/EECS_443/UART_Controller/UART_Controller.sim/sim_1/synth/timing/xsim/uart_tx_test_time_synth.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module clock_divider
+INFO: [VRFC 10-311] analyzing module color_detector
+INFO: [VRFC 10-311] analyzing module top_level
+INFO: [VRFC 10-311] analyzing module uart_rx
+INFO: [VRFC 10-311] analyzing module uart_tx
+INFO: [VRFC 10-311] analyzing module glbl

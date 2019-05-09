@@ -1,0 +1,6 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "H:/EECS_443/UART_Controller/UART_Controller.sim/sim_1/impl/func/xsim/top_level_func_impl.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity clock_divider
+INFO: [VRFC 10-307] analyzing entity color_detector
+INFO: [VRFC 10-307] analyzing entity uart_rx
+INFO: [VRFC 10-307] analyzing entity uart_tx
+INFO: [VRFC 10-307] analyzing entity top_level

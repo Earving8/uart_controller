@@ -1,0 +1,86 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.2 (win64) Build 2258646 Thu Jun 14 20:03:12 MDT 2018
+| Date         : Thu May  9 15:13:26 2019
+| Host         : ENG-CYPQJH2 running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file top_level_control_sets_placed.rpt
+| Design       : top_level
+| Device       : xc7a100t
+--------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Number of unique control sets                            |    18 |
+| Unused register locations in slices containing registers |    84 |
++----------------------------------------------------------+-------+
+
+
+2. Histogram
+------------
+
++--------+--------------+
+| Fanout | Control Sets |
++--------+--------------+
+|      2 |           11 |
+|      4 |            1 |
+|      8 |            1 |
+|     12 |            1 |
+|    16+ |            4 |
++--------+--------------+
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              74 |           21 |
+| No           | No                    | Yes                    |              14 |            5 |
+| No           | Yes                   | No                     |              28 |            5 |
+| Yes          | No                    | No                     |               0 |            0 |
+| Yes          | No                    | Yes                    |               8 |            1 |
+| Yes          | Yes                   | No                     |               0 |            0 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++------------------------------------------+-----------------+-----------------------------+------------------+----------------+
+|               Clock Signal               |  Enable Signal  |       Set/Reset Signal      | Slice Load Count | Bel Load Count |
++------------------------------------------+-----------------+-----------------------------+------------------+----------------+
+|  receiver/FSM_onehot_SM_Main_reg_n_0_[4] |                 |                             |                1 |              2 |
+|  receiver/FSM_onehot_SM_Main_reg_n_0_[1] |                 |                             |                1 |              2 |
+|  receiver/FSM_onehot_SM_Main_reg_n_0_[3] |                 |                             |                1 |              2 |
+|  receiver/FSM_onehot_SM_Main_reg_n_0_[8] |                 |                             |                1 |              2 |
+|  receiver/FSM_onehot_SM_Main_reg_n_0_[6] |                 |                             |                1 |              2 |
+|  receiver/FSM_onehot_SM_Main_reg_n_0_[2] |                 |                             |                1 |              2 |
+|  receiver/FSM_onehot_SM_Main_reg_n_0_[5] |                 |                             |                1 |              2 |
+|  receiver/FSM_onehot_SM_Main_reg_n_0_[7] |                 |                             |                1 |              2 |
+|  receiver/busy_buff                      |                 |                             |                1 |              2 |
+|  receiver/rx_busy                        |                 | transmitter/tx_busy_OBUF    |                1 |              2 |
+|  transmitter/isBusy_reg_i_1_n_0          |                 | transmitter/start           |                1 |              2 |
+|  clk_IBUF_BUFG                           |                 |                             |                2 |              4 |
+|  pulse_gen/CLK                           | transmitter/sel | transmitter/start           |                1 |              8 |
+| ~receiver/rx_busy                        |                 | reset_IBUF                  |                4 |             12 |
+|  receiver/rx_buff                        |                 |                             |                5 |             16 |
+|  receiver/rx_busy                        |                 |                             |                3 |             16 |
+|  pulse_gen/CLK                           |                 |                             |                2 |             20 |
+|  clk_IBUF_BUFG                           |                 | pulse_gen/count[13]_i_1_n_0 |                4 |             26 |
++------------------------------------------+-----------------+-----------------------------+------------------+----------------+
+
+
