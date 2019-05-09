@@ -52,33 +52,10 @@ architecture Behavior of uart_tx is
     signal output: std_logic_vector(10 downto 0);                     
     signal index: integer range 0 to 10; 
     
-begin
+begin    
 
-    tx_busy <= isBusy;           
-    tx  <= output(index);    
-
-    process(tx_en)
-    begin
-        if (isBusy = '1') then           
-            start <= '0';
-        elsif (rising_edge(tx_en)) then
-            start <= '1';                
-        end if;
-    end process;
-
-    process(baudClk,start)
-    begin
-        if (start = '1') then            
-            index <= 0;              
-            isBusy <= '1';
-        elsif (index = 10) then
-            isBusy <= '0';
-        elsif (rising_edge(baudClk)) then
-            index <= index + 1;
-        end if;
-    end process;
-    
-    process(tx_en)
+    --Load data with start and stop bits
+    loading: process(tx_en)
     begin
         if (rising_edge(tx_en)) then     
             output(0) <= '1'; 
@@ -88,4 +65,34 @@ begin
         end if;
     end process;
     
+    --strats transmission
+    starting: process(tx_en)
+    begin
+        --if busy dont start
+        if (isBusy = '1') then           
+            start <= '0';
+        --if not busy and rising edge, start
+        elsif (rising_edge(tx_en)) then
+            start <= '1';                
+        end if;
+    end process;
+
+    --incriments through the bits to transmit
+    counter: process(baudClk,start)
+    begin
+        --starting off set busy to high and index to 0
+        if (start = '1') then            
+            index <= 0;              
+            isBusy <= '1';
+        --once ten, stop transmitting
+        elsif (index = 10) then
+            isBusy <= '0';
+        --with each clk cycle, incriment the clock
+        elsif (rising_edge(baudClk)) then
+            index <= index + 1;
+        end if;
+    end process;
+    
+    tx_busy <= isBusy;           
+    tx  <= output(index);
 end Behavior;

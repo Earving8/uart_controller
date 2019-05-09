@@ -60,23 +60,21 @@ proc step_failed { step } {
   close $ch
 }
 
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 
 start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
-  set_param synth.incrementalSynthesisCache C:/Temp/.Xil/Vivado-15124-eng-90fyfb2/incrSyn
+  set_param xicom.use_bs_reader 1
   create_project -in_memory -part xc7a100tcsg324-1
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
-  set_property webtalk.parent_dir H:/EECS_443/UART_Controller/UART_Controller.cache/wt [current_project]
-  set_property parent.project_path H:/EECS_443/UART_Controller/UART_Controller.xpr [current_project]
-  set_property ip_output_repo H:/EECS_443/UART_Controller/UART_Controller.cache/ip [current_project]
+  set_property webtalk.parent_dir H:/EECS_443/UART_Controller_Experimental/UART_Controller.cache/wt [current_project]
+  set_property parent.project_path H:/EECS_443/UART_Controller_Experimental/UART_Controller.xpr [current_project]
+  set_property ip_output_repo H:/EECS_443/UART_Controller_Experimental/UART_Controller.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
-  add_files -quiet H:/EECS_443/UART_Controller/UART_Controller.runs/synth_1/top_level.dcp
-  read_xdc H:/EECS_443/UART_Controller/UART_Controller.srcs/constrs_1/imports/Nexys4_Board_Material/Nexys4_Master.xdc
+  add_files -quiet H:/EECS_443/UART_Controller_Experimental/UART_Controller.runs/synth_1/top_level.dcp
+  read_xdc H:/EECS_443/UART_Controller_Experimental/UART_Controller.srcs/constrs_1/imports/Nexys4_Board_Material/Nexys4_Master.xdc
   link_design -top top_level -part xc7a100tcsg324-1
   close_msg_db -file init_design.pb
 } RESULT]

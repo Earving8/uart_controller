@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='H:/EECS_443/UART_Controller/UART_Controller.runs/synth_1'
+HD_PWD='H:/EECS_443/UART_Controller_Experimental/UART_Controller.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

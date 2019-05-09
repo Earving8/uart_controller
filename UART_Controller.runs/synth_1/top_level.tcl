@@ -17,28 +17,26 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
-set_param synth.incrementalSynthesisCache C:/Temp/.Xil/Vivado-15124-eng-90fyfb2/incrSyn
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
+set_param xicom.use_bs_reader 1
 create_project -in_memory -part xc7a100tcsg324-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir H:/EECS_443/UART_Controller/UART_Controller.cache/wt [current_project]
-set_property parent.project_path H:/EECS_443/UART_Controller/UART_Controller.xpr [current_project]
+set_property webtalk.parent_dir H:/EECS_443/UART_Controller_Experimental/UART_Controller.cache/wt [current_project]
+set_property parent.project_path H:/EECS_443/UART_Controller_Experimental/UART_Controller.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
-set_property ip_output_repo h:/EECS_443/UART_Controller/UART_Controller.cache/ip [current_project]
+set_property ip_output_repo h:/EECS_443/UART_Controller_Experimental/UART_Controller.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 read_vhdl -library xil_defaultlib {
-  H:/EECS_443/UART_Controller/UART_Controller.srcs/sources_1/imports/sources_1/imports/library_files/math_real.vhdl
-  H:/EECS_443/UART_Controller/UART_Controller.srcs/sources_1/imports/new/clock_divider.vhd
-  H:/EECS_443/UART_Controller/UART_Controller.srcs/sources_1/new/flip_flop.vhd
-  H:/EECS_443/UART_Controller/UART_Controller.srcs/sources_1/imports/sources_1/imports/library_files/math_real-body.vhdl
-  H:/EECS_443/UART_Controller/UART_Controller.srcs/sources_1/new/shift_register.vhd
-  H:/EECS_443/UART_Controller/UART_Controller.srcs/sources_1/new/uart_tx.vhd
-  H:/EECS_443/UART_Controller/UART_Controller.srcs/sources_1/new/top_level.vhd
+  H:/EECS_443/UART_Controller_Experimental/UART_Controller.srcs/sources_1/imports/sources_1/imports/library_files/math_real.vhdl
+  H:/EECS_443/UART_Controller_Experimental/UART_Controller.srcs/sources_1/imports/new/clock_divider.vhd
+  H:/EECS_443/UART_Controller_Experimental/UART_Controller.srcs/sources_1/imports/new/color_detector.vhd
+  H:/EECS_443/UART_Controller_Experimental/UART_Controller.srcs/sources_1/imports/sources_1/imports/library_files/math_real-body.vhdl
+  H:/EECS_443/UART_Controller_Experimental/UART_Controller.srcs/sources_1/imports/Desktop/shift_register.vhd
+  H:/EECS_443/UART_Controller_Experimental/UART_Controller.srcs/sources_1/new/uart_tx.vhd
+  H:/EECS_443/UART_Controller_Experimental/UART_Controller.srcs/sources_1/new/top_level.vhd
 }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -48,8 +46,8 @@ read_vhdl -library xil_defaultlib {
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc H:/EECS_443/UART_Controller/UART_Controller.srcs/constrs_1/imports/Nexys4_Board_Material/Nexys4_Master.xdc
-set_property used_in_implementation false [get_files H:/EECS_443/UART_Controller/UART_Controller.srcs/constrs_1/imports/Nexys4_Board_Material/Nexys4_Master.xdc]
+read_xdc H:/EECS_443/UART_Controller_Experimental/UART_Controller.srcs/constrs_1/imports/Nexys4_Board_Material/Nexys4_Master.xdc
+set_property used_in_implementation false [get_files H:/EECS_443/UART_Controller_Experimental/UART_Controller.srcs/constrs_1/imports/Nexys4_Board_Material/Nexys4_Master.xdc]
 
 set_param ips.enableIPCacheLiteLoad 0
 close [open __synthesis_is_running__ w]
